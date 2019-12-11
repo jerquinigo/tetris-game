@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("tetris");
     let scoreElement = document.getElementById("score")
-	const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
 
-	// const row = 20;
-	// const COL = (COLUMN = 10);
-	// const SQ = (SquareSize = 20);
 	const row = 20;
 	const col = 10;
 	const squareSize = 20;
@@ -171,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     //pieces to lock on top = game over
                     if(this.y + r <= 0){
-                        debugger
                         alert("Game Over")
                         //break animation frame
                         gameOver = true
@@ -240,9 +236,12 @@ document.addEventListener("DOMContentLoaded", () => {
             dropStart = Date.now();
         }else if(event.keyCode === 39){
             p.movePieceRight()
+            document.getElementById("my_audio").play();
             dropStart = Date.now();
         }else if(event.keyCode === 40){
             p.movePieceDown()
+            //this will start the music
+            document.getElementById("my_audio").play();
             dropStart = Date.now();
         }
     })

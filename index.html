@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="./tetris.js"></script>
-    <title>Tetris</title>
-</head>
-<body>
-    <canvas id="tetris" width="200" height="400"></canvas>
-    <div>
-    <span>score:</span> <span id="score">0</span>
-    </div>
-    <script src="./tetriminos.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="./tetris.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+		/>
+		<link rel="stylesheet" type="text/css" href="./tetris.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Tetris</title>
+	</head>
+	<body>
+            <audio src="./assets/Tetris.mp3" id="my_audio" loop="loop"></audio>         
+		<div class="container">
+			<h1 class="main-header flow-text">Tetris JavaScript <3</h1>
+		</div>
+		<div class="container position-custom">
+			<div class="row">
+				<div class="col s12 m12">
+					<canvas id="tetris" width="200" height="400"></canvas>
+					<div class="page-score">
+						<span class="page-text">score:</span>
+						<span class="page-text" id="score">0</span>
+					</div>
+				</div>
+			</div>
+		</div>
+        <script src="./tetriminos.js"></script>
+
     
-</body>
+	</body>
 </html>
+
+<!-- <iframe class="music" width="560" height="315" src="https://www.youtube.com/embed/sv9QhGhJyas?autoplay=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
