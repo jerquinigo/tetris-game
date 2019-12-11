@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			this.tetrominoNumber = 0;
 			this.activeTetromino = this.tetromino[this.tetrominoNumber];
 			this.x = 0;
-			this.y = 0;
+            this.y = 0;
+            this.score = 0
 		}
 
 		fillPiece(color) {
@@ -87,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.drawPiece();
             }else{
                 // we lock the piece and generate a new piece
+                this.lock()
+                p = randomPiece()
             }
 
         }
@@ -129,11 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        collision(x,y,pieces){
-            for (let r = 0; r < pieces.length; r++) {
-				for (let c = 0; c < pieces.length; c++) {
+        collision(x,y,piece){
+            for (let r = 0; r < piece.length; r++) {
+				for (let c = 0; c < piece.length; c++) {
                     // check to see if square is empty
-                    if(pieces[r][c]){
+                    if(!piece[r][c]){
                         continue;
                     }
                     //coordinates of the pieces after movement
@@ -156,6 +159,48 @@ document.addEventListener("DOMContentLoaded", () => {
             return false
         }
 
+        lock(){
+            for (let r = 0; r < this.activeTetromino.length; r++) {
+				for (let c = 0; c < this.activeTetromino.length; c++) {
+					//skip vacent squares
+					if (!this.activeTetromino[r][c]) {
+						continue
+                    }
+                    //pieces to lock on top = game over
+                    if(this.y + r < 0){
+                        alert("Game Over")
+                        //break animation frame
+                        gameOver = true
+                        break;
+                    }
+                    // lock the piece
+                    board[this.y+r][this.x+c] = this.color
+				}
+            }
+            for(let r = 0; r < row; r++){
+                let isRowFull = true
+                for(let c = 0; c < col; c++){
+                    isRowFull = isRowFull && (board[r][c] !== vacant)
+                }
+                if(isRowFull){
+                    //if row full
+                    //move rows above it down
+                    for(let y = r; y > 1; y--){
+                        for(let c = 0; c < col; c++){
+                            board[y][c] = board[y-1][c]
+                        }
+                    }
+                    //top row board[0][..] has no row above it
+                    for(let c = 0; c < col; c++){
+                        board[0][c] = vacant
+                    }
+                    // increment score
+                    this.score += 10
+                }
+            }
+            drawBoard()
+        }
+
     }
     
 
@@ -167,15 +212,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log(p, "p");
 	p.drawPiece();
 
-	let dropStart = Date.now();
+    let dropStart = Date.now();
+    let gameOver = false
 	let dropTetrisPiece = () => {
 		let now = Date.now();
 		let delta = now - dropStart;
 		if (delta > 200) {
 			p.movePieceDown();
 			dropStart = Date.now();
-		}
-		requestAnimationFrame(dropTetrisPiece);
+        }
+        if(!gameOver){
+        requestAnimationFrame(dropTetrisPiece);
+        }
     };
     
     document.addEventListener("keydown", (event) => {
