@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const canvas = document.getElementById("tetris");
+    const canvas = document.getElementById("tetris");
+    let scoreElement = document.getElementById("score")
 	const ctx = canvas.getContext("2d");
 
 	// const row = 20;
@@ -49,7 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		[J, "violet"]
 	];
 
-	// initiate a game piece
+    // initiate a game piece
+    let score = 0
 	console.log(pieces[0][0][0][2], pieces[0][1]);
 	class Piece {
 		constructor(tetromino, color) {
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			this.activeTetromino = this.tetromino[this.tetrominoNumber];
 			this.x = 0;
             this.y = 0;
-            this.score = 0
+
 		}
 
 		fillPiece(color) {
@@ -197,10 +199,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         board[0][c] = vacant
                     }
                     // increment score
-                    this.score += 10
+                    score += 10
                 }
             }
             drawBoard()
+            scoreElement.innerHTML = score
         }
 
     }
