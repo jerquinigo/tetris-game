@@ -160,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         lock(){
+
             for (let r = 0; r < this.activeTetromino.length; r++) {
 				for (let c = 0; c < this.activeTetromino.length; c++) {
 					//skip vacent squares
@@ -167,7 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
 						continue
                     }
                     //pieces to lock on top = game over
-                    if(this.y + r < 0){
+                    if(this.y + r <= 0){
+                        debugger
                         alert("Game Over")
                         //break animation frame
                         gameOver = true
