@@ -5,6 +5,10 @@
     font-size: 230%;
 }
 
+#tetris{
+    width:100% !important;
+}
+
 /* .position-custom{
     display:flex !important;
 } */
@@ -20,7 +24,7 @@
 
 #gameOverText{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 300%;
@@ -31,15 +35,15 @@
 }
 
 .left-button{
-    width: 50%;
+    width: 100%;
 }
 
 .right-button{
-    width:50%;
+    width:100%;
 }
 
 .red-button{
-    width:50%;
+    width:100%;
 }
 
 body{
