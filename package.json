@@ -1,0 +1,19 @@
+{
+  "name": "tetris-game",
+  "version": "1.0.0",
+  "description": "tetris",
+  "main": "tetriminos.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerquinigo/tetris-game.git"
+  },
+  "author": "jonathan.e",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerquinigo/tetris-game/issues"
+  },
+  "homepage": "https://github.com/jerquinigo/tetris-game#readme"
+}

@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("tetris");
     let scoreElement = document.getElementById("score")
+    let gameOverElement = document.getElementById("gameOverText")
+    let leftButtonElement = document.getElementById("left-button-div")
+    let rightButtonElement = document.getElementById("right-button-div")
+    let rotateButtonElement = document.getElementById("rotate-button-div")
     const ctx = canvas.getContext("2d");
 
 	const row = 20;
@@ -168,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     //pieces to lock on top = game over
                     if(this.y + r <= 0){
-                        alert("Game Over")
+                        gameOverElement.innerHTML = "Game Over"
                         //break animation frame
                         gameOver = true
                         break;
@@ -246,5 +250,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    //for mobile experience
+    leftButtonElement.addEventListener("click", (event) => {
+        p.movePieceLeft()
+        dropStart = Date.now();
+    })
+
+    rightButtonElement.addEventListener("click", (event) => {
+        p.movePieceRight()
+        document.getElementById("my_audio").play();
+        dropStart = Date.now();
+    })
+
+    rotateButtonElement.addEventListener("click", (event) => {
+        p.rotatePiece()
+        dropStart = Date.now();
+    })
 	dropTetrisPiece();
 });
