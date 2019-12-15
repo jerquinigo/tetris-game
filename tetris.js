@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let leftButtonElement = document.getElementById("left-button-div")
     let rightButtonElement = document.getElementById("right-button-div")
     let rotateButtonElement = document.getElementById("rotate-button-div")
+    let dropDownElement = document.getElementById("drop-down-fast-div")
     const ctx = canvas.getContext("2d");
 
 	const row = 20;
@@ -266,5 +267,29 @@ document.addEventListener("DOMContentLoaded", () => {
         p.rotatePiece()
         dropStart = Date.now();
     })
+    
+    var timer = null;
+
+    // Set up an event handler for mousedown
+
+$("#drop-down-fast-div").mousedown(function(){
+
+    timer = setInterval(() => {
+        p.movePieceDown()
+    
+        dropStart = Date.now();
+    },100);
+ 
+})
+
+$("#drop-down-fast-div").mouseup(function(){
+    setTimeout(() => {
+        clearInterval(timer) 
+    },500);
+
+})
+
+
+    
 	dropTetrisPiece();
 });

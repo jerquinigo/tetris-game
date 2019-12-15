@@ -14,12 +14,13 @@
 			href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
 			rel="stylesheet"
 		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<title>Tetris</title>
 	</head>
 	<body>
 		<audio src="./assets/Tetris.mp3" id="my_audio" loop="loop"></audio>
 		<div class="container">
-			<h1 class="main-header flow-text hide-on-med-and-down">Tetris JavaScript <3</h1>
+			<h1 class="main-header flow-text ">Tetris JavaScript <3</h1>
 		</div>
 		<div class="container position-custom">
 			<div class="row">
@@ -38,15 +39,18 @@
 			<div class="game-controller">
 				<div class="center-controller">
 					
-					<div id="left-button-div" class="col s2 hide-on-med-and-up">
+					<div id="left-button-div" class="col s3 hide-on-med-and-up">
 						<img class="left-button" src="./assets/leftArrow.png" alt="" />
 					</div>
-					<div id="right-button-div" class="col s2 hide-on-med-and-up">
+					<div id="right-button-div" class="col s3 hide-on-med-and-up">
 						<img class="right-button" src="./assets/rightArrow.png" alt="" />
 					</div>
-					<div id="rotate-button-div" class="col s2 hide-on-med-and-up">
+					<div id="rotate-button-div" class="col s3 hide-on-med-and-up">
 							<img class="red-button" src="./assets/redButton.png" alt="" />
 						</div>
+						<div id="drop-down-fast-div" class="col s3 hide-on-med-and-up">
+								<img class="red-button" src="./assets/redButton.png" alt="" />
+							</div>
 				</div>
 			</div>
 		</div>
