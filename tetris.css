@@ -5,6 +5,15 @@
     font-size: 230%;
 }
 
+body{
+    background-image: url(./assets/gameBackground.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    object-fit: cover;
+}
+
 #tetris{
     width:100% !important;
 }
