@@ -1,4 +1,4 @@
-Tetris-JavaScript :heart:
+# Tetris-JavaScript :heart:
 
 ### [Link to live site](https://tetrisjavascript-8adde.firebaseapp.com/)
 
