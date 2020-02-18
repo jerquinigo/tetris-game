@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const vacant = "white";
 
 	// to draw individual square
-	let drawSquare = (x, y, color) => {
+	const drawSquare = (x, y, color) => {
 		ctx.fillStyle = color;
 		ctx.fillRect(x * squareSize, y * squareSize, squareSize, squareSize);
 		ctx.strokeStyle = "black";
@@ -23,15 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	//draw the board
 
-	let board = [];
-	for (let r = 0; r < row; r++) {
-		board[r] = [];
-	    for (let c = 0; c < col; c++) {
-			board[r][c] = vacant;
-		}
-	}
+    //to draw the initial white squares
+    let board = [];
+    const drawInitialBoard = () => {
+        for (let r = 0; r < row; r++) {
+            board[r] = [];
+            for (let c = 0; c < col; c++) {
+                board[r][c] = vacant;
+            }
+        }
+    }
 
-	let drawBoard = () => {
+    drawInitialBoard();
+
+// draws the colored tetrimino
+	const drawBoard = () => {
 		for (let r = 0; r < row; r++) {
 			for (let c = 0; c < col; c++) {
 				drawSquare(c, r, board[r][c]);
@@ -39,7 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	};
 
-	drawBoard();
+    drawBoard();
+    
+    
 
 	// the game pieces and their color
 	const pieces = [
@@ -54,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // initiate a game piece
     let score = 0
-	console.log(pieces[0][0][0][2], pieces[0][1]);
+	//console.log(pieces[0][0][0][2], pieces[0][1]);
 	class Piece {
 		constructor(tetromino, color) {
 			this.tetromino = tetromino;
@@ -212,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 
-    let randomPiece = () => {
+    const randomPiece = () => {
         let r = Math.floor(Math.random() * pieces.length)
         return new Piece(pieces[r][0], pieces[r][1])
     }
@@ -221,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let dropStart = Date.now();
     let gameOver = false
-	let dropTetrisPiece = () => {
+	const dropTetrisPiece = () => {
 		let now = Date.now();
 		let delta = now - dropStart;
 		if (delta > 200) {
@@ -241,16 +249,19 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault()
             p.movePieceLeft()
             dropStart = Date.now();
-        }else if(event.keyCode === 38 || event.keyCode === 32 || event.keyCode === 90){
+        }
+        else if(event.keyCode === 38 || event.keyCode === 32 || event.keyCode === 90){
             event.preventDefault()
             p.rotatePiece()
             dropStart = Date.now();
-        }else if(event.keyCode === 39){
+        }
+        else if(event.keyCode === 39){
             event.preventDefault()
             p.movePieceRight()
             document.getElementById("my_audio").play();
             dropStart = Date.now();
-        }else if(event.keyCode === 40){
+        }
+        else if(event.keyCode === 40){
             event.preventDefault()
             p.movePieceDown()
             //this will start the music
@@ -276,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dropStart = Date.now();
     })
     
-    var timer = null;
+    let timer = null;
 
     // Set up an event handler for mousedown
 
