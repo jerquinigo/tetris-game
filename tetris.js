@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let board = [];
 	for (let r = 0; r < row; r++) {
 		board[r] = [];
-		for (let c = 0; c < col; c++) {
+	    for (let c = 0; c < col; c++) {
 			board[r][c] = vacant;
 		}
 	}
@@ -90,7 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.undrawPiece();
                 this.y++;
                 this.drawPiece();
-            }else{
+            }
+            else{
                 // we lock the piece and generate a new piece
                 this.lock()
                 p = randomPiece()
@@ -100,17 +101,17 @@ document.addEventListener("DOMContentLoaded", () => {
         
         movePieceRight() {
             if(!this.collision(1,0,this.activeTetromino)){
-			this.undrawPiece();
-			this.x++;
-            this.drawPiece();
+                this.undrawPiece();
+                this.x++;
+                this.drawPiece();
             }
         }
         
         movePieceLeft() {
             if(!this.collision(-1,0,this.activeTetromino)){
-			this.undrawPiece();
-			this.x--;
-            this.drawPiece();
+                this.undrawPiece();
+                this.x--;
+                this.drawPiece();
             }
         }
 
@@ -122,17 +123,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(this.x > col/2){
                 // its the right wall
                     kick = -1 // move the piece to the left
-                }else{
+                }
+                else{
                     kick = 1// move the piece to the right
                 }
             }
 
             if(!this.collision(kick,0,nextPattern)){
-            this.undrawPiece()
-            this.x += kick
-            this.tetrominoNumber = (this.tetrominoNumber + 1) % this.tetromino.length // (0 + 1) % 4 = 1
-            this.activeTetromino = this.tetromino[this.tetrominoNumber]
-            this.drawPiece()
+                this.undrawPiece()
+                this.x += kick
+                this.tetrominoNumber = (this.tetrominoNumber + 1) % this.tetromino.length // (0 + 1) % 4 = 1
+                this.activeTetromino = this.tetromino[this.tetrominoNumber]
+                this.drawPiece()
             }
         }
 
@@ -187,21 +189,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 for(let c = 0; c < col; c++){
                     isRowFull = isRowFull && (board[r][c] !== vacant)
                 }
-                if(isRowFull){
-                    //if row full
-                    //move rows above it down
-                    for(let y = r; y > 1; y--){
-                        for(let c = 0; c < col; c++){
-                            board[y][c] = board[y-1][c]
+                    if(isRowFull){
+                        //if row full
+                        //move rows above it down
+                        for(let y = r; y > 1; y--){
+                            for(let c = 0; c < col; c++){
+                                board[y][c] = board[y-1][c]
+                            }
                         }
+                        //top row board[0][..] has no row above it
+                        for(let c = 0; c < col; c++){
+                            board[0][c] = vacant
+                        }
+                        // increment score
+                        score += 10
                     }
-                    //top row board[0][..] has no row above it
-                    for(let c = 0; c < col; c++){
-                        board[0][c] = vacant
-                    }
-                    // increment score
-                    score += 10
-                }
             }
             drawBoard()
             scoreElement.innerHTML = score
@@ -215,7 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return new Piece(pieces[r][0], pieces[r][1])
     }
 	let p = randomPiece()
-	console.log(p, "p");
 	p.drawPiece();
 
     let dropStart = Date.now();
@@ -231,19 +232,26 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(dropTetrisPiece);
         }
     };
+
+
     
     document.addEventListener("keydown", (event) => {
+
         if(event.keyCode === 37){
+            event.preventDefault()
             p.movePieceLeft()
             dropStart = Date.now();
         }else if(event.keyCode === 38 || event.keyCode === 32 || event.keyCode === 90){
+            event.preventDefault()
             p.rotatePiece()
             dropStart = Date.now();
         }else if(event.keyCode === 39){
+            event.preventDefault()
             p.movePieceRight()
             document.getElementById("my_audio").play();
             dropStart = Date.now();
         }else if(event.keyCode === 40){
+            event.preventDefault()
             p.movePieceDown()
             //this will start the music
             document.getElementById("my_audio").play();
