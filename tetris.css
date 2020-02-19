@@ -27,6 +27,11 @@ body{
     font-size: 150%;
 }
 
+.page-text-button{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 100%;
+}
+
 .page-score{
     text-align: center;
 }

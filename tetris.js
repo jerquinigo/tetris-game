@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let rightButtonElement = document.getElementById("right-button-div")
     let rotateButtonElement = document.getElementById("rotate-button-div")
     let dropDownElement = document.getElementById("drop-down-fast-div")
-    let testReset = document.getElementById("testReset")
+    let resetGameButton = document.getElementById("reset-game")
     const ctx = canvas.getContext("2d");
 
 	const row = 20;
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     drawInitialBoard();
 
-    testReset.addEventListener("click",(event) => {
+    resetGameButton.addEventListener("click",(event) => {
         event.preventDefault()
         ctx.clearRect(0, 0, 200, 400);
         drawInitialBoard()
