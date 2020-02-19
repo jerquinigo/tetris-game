@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let rightButtonElement = document.getElementById("right-button-div")
     let rotateButtonElement = document.getElementById("rotate-button-div")
     let dropDownElement = document.getElementById("drop-down-fast-div")
+    let testReset = document.getElementById("testReset")
     const ctx = canvas.getContext("2d");
 
 	const row = 20;
@@ -35,6 +36,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     drawInitialBoard();
+
+    testReset.addEventListener("click",(event) => {
+        event.preventDefault()
+        ctx.clearRect(0, 0, 200, 400);
+        drawInitialBoard()
+        drawBoard()
+        score = 0
+        scoreElement.innerHTML = score
+        gameOver = false
+        gameOverElement.innerHTML = ""
+        
+        requestAnimationFrame(dropTetrisPiece)
+    })
 
 // draws the colored tetrimino
 	const drawBoard = () => {
@@ -183,11 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     //pieces to lock on top = game over
                     if(this.y + r <= 0){
+                        
                         gameOverElement.innerHTML = "Game Over"
                         //break animation frame
                         gameOver = true
                         break;
                     }
+                    
                     // lock the piece
                     board[this.y+r][this.x+c] = this.color
 				}
@@ -231,7 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let gameOver = false
 	const dropTetrisPiece = () => {
 		let now = Date.now();
-		let delta = now - dropStart;
+        let delta = now - dropStart;
+        //console.log(delta, "delta")
+        //decrementing the value will make it go faster. Making it higher will make it go slower. My default is 200
 		if (delta > 200) {
 			p.movePieceDown();
 			dropStart = Date.now();
