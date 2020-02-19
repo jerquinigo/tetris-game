@@ -234,6 +234,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }
+
+
+    //notes to work on changing game speed
+    //increasing game speed
+    //let baseSpeed = 200
+    // const increaseGameSpeed = (score) => {
+    //     console.log(score, "in the funct")
+    //     //let baseSpeed = 200
+    //     if(score % 3 === 0 && score !== 0){
+    //         baseSpeed = baseSpeed - 100
+    //     }
+    //     console.log(baseSpeed, "the speed")
+    //     return baseSpeed
+        
+    // }
+    
+    // increaseGameSpeed(score)
+
+
     
 
     const randomPiece = () => {
@@ -252,7 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
         //decrementing the value will make it go faster. Making it higher will make it go slower. My default is 200
 		if (delta > 200) {
 			p.movePieceDown();
-			dropStart = Date.now();
+            dropStart = Date.now();
+            //setInterval(setTimerSpeed(score), 1000)
         }
         if(!gameOver){
         requestAnimationFrame(dropTetrisPiece);
