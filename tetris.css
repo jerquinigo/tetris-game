@@ -15,7 +15,12 @@ body{
 }
 
 #tetris{
-    width:100% !important;
+    width:80% !important;
+}
+
+.tetris-div-container{
+    display: flex;
+    justify-content: center;
 }
 
 /* .position-custom{
